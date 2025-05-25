@@ -1,2 +1,4 @@
 backend/env/
 backend/py_client/
+__pycache__/
+*.py[cod]
