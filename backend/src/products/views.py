@@ -1,17 +1,25 @@
 from rest_framework import generics
-from rest_framework.exceptions import ValidationError
 from .models import Product
 from .serializers import ProductSerializer
+from api.mixins import IsStaffEditorPermissionMixin
 
-class ProductListView(generics.ListAPIView): # Return all the objects in JSON format
+class ProductListView(
+    generics.ListAPIView
+    ): # Return all the objects in JSON format
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class ProductDetailView(generics.RetrieveAPIView): # Return a single objesct in the JSON format w
+class ProductDetailView(
+    IsStaffEditorPermissionMixin,
+    generics.RetrieveAPIView
+    ): # Return a single objesct in the JSON format w
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-class ProductCreateView(generics.CreateAPIView): # Post method to create a new object 
+class ProductCreateView(
+    IsStaffEditorPermissionMixin,
+    generics.CreateAPIView
+    ): # Post method to create a new object 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
@@ -22,12 +30,18 @@ class ProductCreateView(generics.CreateAPIView): # Post method to create a new o
         
         serializer.save(name=name, description=description, price=price)
 
-class ProductUpdateView(generics.UpdateAPIView):
+class ProductUpdateView(
+    IsStaffEditorPermissionMixin,
+    generics.UpdateAPIView
+    ):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'pk'
     
-class ProductDeleteView(generics.DestroyAPIView):
+class ProductDeleteView(
+    IsStaffEditorPermissionMixin,
+    generics.DestroyAPIView
+    ):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'pk'

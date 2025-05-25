@@ -40,9 +40,11 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'rest_framework', 
+    'rest_framework_simplejwt.token_blacklist',
 
     # Local apps
     'products',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+auth_classes = [
+    'rest_framework.authentication.SessionAuthentication',
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
+]
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": auth_classes,
+    "DEFAULT_PERMISSION_CLASSES": [
+        'rest_framework.permissions.IsAuthenticated',
+    ] 
+}
+
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
+
