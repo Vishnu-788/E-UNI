@@ -7,6 +7,7 @@ from .models import User
 from .serializers import UserRegisterSerializer, UserProfileSerializer, UserLoginSerializer
 from rest_framework import status
 
+# logout view works only if the authentication tokens are provided (refresh as json and accesss tokens as headers)
 class UserLogoutView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -20,6 +21,7 @@ class UserLogoutView(generics.GenericAPIView):
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
+# login view that blacklist multiple tokens so that an active user will only have a single refresh token
 class UserLoginView(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = UserLoginSerializer
@@ -79,12 +81,20 @@ class UserRegistrationView(generics.CreateAPIView):
         response.data['refresh'] = str(refresh)
 
         return response
-    
-class UserProfileView(generics.RetrieveUpdateAPIView):
+
+
+class UserProfileDetailUpdateView(generics.RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
 
     def get_object(self):
         return self.request.user
+    
+    def perform_update(self, serializer):
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+
+
+
 
