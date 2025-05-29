@@ -10,6 +10,8 @@ __pycache__/
 *.py[cod]
 =======
 
+
+
 # Other common ignores
 *.sqlite3
 *.log
