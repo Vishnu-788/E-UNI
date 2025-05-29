@@ -18,3 +18,4 @@ __pycache__/
 *.env
 *.egg-info/
 >>>>>>> feature
+db.sqlite3
