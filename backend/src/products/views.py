@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from .models import Product
 from .serializers import ProductSerializer
 from api.mixins import IsStaffEditorPermissionMixin
@@ -8,13 +8,14 @@ class ProductListView(
     ): # Return all the objects in JSON format
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class ProductDetailView(
-    IsStaffEditorPermissionMixin,
     generics.RetrieveAPIView
     ): # Return a single objesct in the JSON format w
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class ProductCreateView(
     IsStaffEditorPermissionMixin,

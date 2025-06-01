@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'api',
     'products',
     'users',
+    'orders',
 
 ]
 
@@ -135,9 +136,15 @@ AUTH_USER_MODEL = 'users.User'
 
 
 auth_classes = [
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
+]
+
+if DEBUG:
+    auth_classes = [
     'rest_framework.authentication.SessionAuthentication',
     'rest_framework_simplejwt.authentication.JWTAuthentication',
 ]
+    
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": auth_classes,
     "DEFAULT_PERMISSION_CLASSES": [
