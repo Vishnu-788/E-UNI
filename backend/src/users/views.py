@@ -4,7 +4,7 @@ from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, Bl
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from .models import User
-from .serializers import UserRegisterSerializer, UserProfileSerializer, UserLoginSerializer
+from .serializers import UserRegisterSerializer, UserLoginSerializer
 from rest_framework import status
 
 # logout view works only if the authentication tokens are provided (refresh as json and accesss tokens as headers)
@@ -83,17 +83,7 @@ class UserRegistrationView(generics.CreateAPIView):
         return response
 
 
-class UserProfileDetailUpdateView(generics.RetrieveUpdateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
-    queryset = User.objects.all()
-    serializer_class = UserProfileSerializer
 
-    def get_object(self):
-        return self.request.user
-    
-    def perform_update(self, serializer):
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
 
 
 
