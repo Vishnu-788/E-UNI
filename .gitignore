@@ -1,21 +1,49 @@
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Env folders
-backend/env/
-backend/py_client/
-<<<<<<< HEAD
-__pycache__/
+# Bytecode and compiled files
 *.py[cod]
-=======
 
+# Virtual environments
+env/
+venv/
+backend/env/
 
+# Django migrations - ignore all but __init__.py
+**/migrations/*.py
+!**/migrations/__init__.py
 
-# Other common ignores
+# SQLite DB (remove if you use PostgreSQL or MySQL)
 *.sqlite3
-*.log
-*.env
-*.egg-info/
->>>>>>> feature
 db.sqlite3
+
+# Logs
+*.log
+
+# Environment variables
+.env
+*.env
+
+# Django secret files
+*.secret
+
+# VSCode / PyCharm / JetBrains
+.vscode/
+.idea/
+
+# pip and setup files
+*.egg-info/
+dist/
+build/
+
+# Test folders or auto-generated API clients
+backend/py_client/
+
+# Node modules if you ever do full-stack
+node_modules/
+
+# Merge conflict leftovers
+*.orig
