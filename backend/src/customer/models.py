@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+
 from django.utils.translation import gettext_lazy as _
 
 class Customer(models.Model):
@@ -16,7 +17,8 @@ class Customer(models.Model):
     user = models.OneToOneField(
         User, 
         on_delete=models.CASCADE,
-        primary_key=True
+        primary_key=True,
+        related_name='customer'
     )
        
 

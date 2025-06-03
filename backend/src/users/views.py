@@ -3,9 +3,10 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
-from .models import User
-from .serializers import UserRegisterSerializer, UserLoginSerializer
 from rest_framework import status
+from .serializers import UserRegisterSerializer, UserLoginSerializer
+from .models import User
+
 
 # logout view works only if the authentication tokens are provided (refresh as json and accesss tokens as headers)
 class UserLogoutView(generics.GenericAPIView):
@@ -64,12 +65,14 @@ class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserRegisterSerializer
 
     def perform_create(self, serializer):
+        print("Serializer.validated data: ", serializer.validated_data)
         username = serializer.validated_data.get('username')
         email = serializer.validated_data.get('email')
         password = serializer.validated_data.get('password')
+        role = serializer.validated_data.get('role')
 
-        if username and email and password:
-            serializer.save(username=username, email=email, password=password)
+        if username and email and password and role:
+            serializer.save(username=username, email=email, password=password, role=role)
     
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)

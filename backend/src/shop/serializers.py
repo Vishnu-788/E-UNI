@@ -1,24 +1,61 @@
 from rest_framework import serializers
-from .models import ShopProfile
+from .models import Shop
+from users.models import User
+
+# To perform nested i created a new user serializer here
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'date_joined']
+        read_only_fields = ['id', 'date_joined']
 
 class ShopProfileSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(source='id.email', read_only=True)
+    user = UserSerializer()
+
     class Meta:
-        model=ShopProfile
+        model=Shop
         fields=[
-            'id',
+            'user',
             'shop_name',
-            'shop_description',
-            'email',
-            'shop_address',
+            'owner_name',
+            'about_shop',
+            'shop-contact',
             'country_code',
-            'shop_mobile',
-            'shop_license',
+            'address',
             'state',
             'country',
+            'pincode', 
+            'category'
         ]
 
-        read_only_fields=[
-            'id'
-        ]
+    def validate_shop_contact(self, value):
+        if not value.isdigit and len(value) !=10:
+            raise serializers.ValidationError("Shop contact must be 10-digit number.")
+        return value
+    
+    def validate_pincode(self, value):
+        if not value.isdigit:
+            raise serializers.ValidationError("Pincode must be an number.")
+        
+    def update(self, instance, validated_data):
+        # poping the data since the serilaizer and model is nested 
+        user_data = validated_data.pop('user')
+        user = instance.user
+
+        # saving the changes in the user model via user serializer
+        for attr, val in user_data:
+            setattr(user, attr, val)
+
+        user.save()
+
+        for attr, val in validated_data:
+            setattr(instance, attr, val)
+
+        instance.save()
+
+        return instance
+    
+
+
+    
         

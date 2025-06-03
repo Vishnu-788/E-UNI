@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .serializers import ShopProfileSerializer
 
-# Create your views here.
+class ShopDetailUpdateView(generics.RetrieveUpdateAPIView):
+    serializer_class = ShopProfileSerializer
+
+    def get_object(self):
+        user = self.request.user
+        return user.shop
