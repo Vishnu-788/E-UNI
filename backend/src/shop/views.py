@@ -7,3 +7,4 @@ class ShopDetailUpdateView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         user = self.request.user
         return user.shop
+        

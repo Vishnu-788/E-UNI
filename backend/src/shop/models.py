@@ -23,6 +23,15 @@ class Shop(models.Model):
     category = models.CharField(_("Category"), max_length=25, null=True, blank=True)
     is_verified = models.BooleanField(default=False)
 
+    # Toggles the verification falg when all the fields are provided then only shop can uses the authorized routes
+    def check_verification(self):
+        required_fields = [self.shop_name, self.owner_name, self.about_shop, self.country_code, self.address, self.state,
+                           self.country, self.pincode, self.category]
+        if all(required_fields):
+            self.is_verified = True
+        else:
+            self.is_verified = False
+        self.save()
 
     # This ensure that the role can be only assigned when created not during update
     def save(self, *args, **kwargs):

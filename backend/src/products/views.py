@@ -1,9 +1,11 @@
-from rest_framework import generics, permissions
+from rest_framework import generics
+from api.mixins import IsVerifiedShopMixin
+
 from .models import Product
 from .serializers import ProductSerializer
-from api.mixins import IsStaffEditorPermissionMixin
 
 class ProductListView(
+    IsVerifiedShopMixin,
     generics.ListAPIView
     ): # Return all the objects in JSON format
     serializer_class = ProductSerializer
@@ -13,6 +15,7 @@ class ProductListView(
         return Product.objects.filter(shop=user.id)
 
 class ProductDetailView(
+    IsVerifiedShopMixin,
     generics.RetrieveAPIView
     ): # Return a single objesct in the JSON format w
     serializer_class = ProductSerializer
@@ -22,6 +25,7 @@ class ProductDetailView(
         return Product.objects.filter(shop=user.id)
 
 class ProductCreateView(
+    IsVerifiedShopMixin,
     generics.CreateAPIView
     ): # Post method to create a new object 
     serializer_class = ProductSerializer
@@ -36,7 +40,7 @@ class ProductCreateView(
         serializer.save(shop=shop)
 
 class ProductUpdateView(
-    IsStaffEditorPermissionMixin,
+    IsVerifiedShopMixin,
     generics.UpdateAPIView
     ):
 
@@ -48,7 +52,7 @@ class ProductUpdateView(
         return Product.objects.filter(shop=user.id)
     
 class ProductDeleteView(
-    IsStaffEditorPermissionMixin,
+    IsVerifiedShopMixin,
     generics.DestroyAPIView
     ):
     serializer_class = ProductSerializer

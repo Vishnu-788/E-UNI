@@ -11,6 +11,14 @@ class IsStaffEditorPermission(permissions.DjangoModelPermissions):
         'DELETE': ['%(app_label)s.delete_%(model_name)s'],
     }
 
+
+
+class IsVerifiedShop(permissions.BasePermission):
+    def has_permission(self, request, view):
+        user = request.user
+        return hasattr(user, 'shop') and user.shop.is_verified
+
+
 # class IsNormalUserPermission(permissions.DjangoModelPermissions):
 #     perms_map = {
 #         'GET': ['%(app_label)s.view_%(model_name)s'],

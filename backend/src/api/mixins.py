@@ -1,8 +1,8 @@
-from .permissions import IsStaffEditorPermission
+from .permissions import IsStaffEditorPermission, IsVerifiedShop
 from rest_framework import permissions
 
 class IsStaffEditorPermissionMixin:
     permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
 
-class IsNormalUserPermissionMixin:
-    permissions_classes = []
+class IsVerifiedShopMixin:
+    permission_classes = [IsVerifiedShop]
