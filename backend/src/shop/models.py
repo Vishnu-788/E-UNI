@@ -23,6 +23,10 @@ class Shop(models.Model):
     category = models.CharField(_("Category"), max_length=25, null=True, blank=True)
     is_verified = models.BooleanField(default=False)
 
+   
+    def __str__(self):
+        return self.shop_name
+    
     # Toggles the verification falg when all the fields are provided then only shop can uses the authorized routes
     def check_verification(self):
         required_fields = [self.shop_name, self.owner_name, self.about_shop, self.country_code, self.address, self.state,

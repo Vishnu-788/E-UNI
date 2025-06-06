@@ -47,3 +47,7 @@ node_modules/
 
 # Merge conflict leftovers
 *.orig
+
+# media related files 
+backend/src/media/
+

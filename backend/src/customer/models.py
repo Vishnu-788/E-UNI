@@ -37,6 +37,9 @@ class Customer(models.Model):
     pincode = models.CharField(_("Pincode"), max_length=6, blank=True, null=True)
     country = models.CharField(_("Country"), max_length=50, blank=True, null=True)
 
+    def __str__(self):
+        return self.user.first_name + self.user.last_name
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.role = self.base_role

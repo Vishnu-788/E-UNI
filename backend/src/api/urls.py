@@ -5,11 +5,11 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  
-
-    path('products/', include('products.urls')),
+    
     path('user/', include('users.urls')),
-    path('user/order/', include('orders.urls')),
     path('customer/', include('customer.urls')),
-    path('shop/', include('shop.urls'))
+    path('orders/', include('orders.urls')),
+    path('shop/', include('shop.urls')),
+    path('shop/products/', include('products.urls')),
 
 ]
