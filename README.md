@@ -1,6 +1,6 @@
 # 🛍️ E-UNI E-commerce Backend
 
-An E-Commerce application backend built using Django stateless server and REST FRAMEWORK. Used DRF for making APIs and JWT for stateless authentication. Mainly this application consist of 2 users - Customer and Shop. Customers can view, update their profile and browse products from different shops and order them. Shop can perform CRUD opertaions on the product, view/update their profile and view orders. NOTE: Shops can only perform CRUD if they complete thier registration, so after registering as a user complete the registration by calsling the `PATCH   /api/shop/` endpoint
+An E-Commerce application backend built using Django stateless server and REST FRAMEWORK. Used DRF for making APIs and JWT for stateless authentication. Mainly this application consist of 2 users - Customer and Shop. Customers can view, update their profile and browse products from different shops and order them. Shop can perform CRUD opertaions on the product, view/update their profile and view orders. NOTE: Shops can only perform CRUD if they complete thier registration, so after registering as a user complete the registration by calling the `PATCH   /api/shop/` endpoint
 
 ## ✨ Features
 - Shop & Customer registration

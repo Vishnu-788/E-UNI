@@ -1,20 +1,11 @@
 # Python cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Bytecode and compiled files
 *.py[cod]
 
 # Virtual environments
 env/
 venv/
 backend/env/
-
-# Django migrations - ignore all but __init__.py
-**/migrations/*.py
-!**/migrations/__init__.py
 
 # SQLite DB (remove if you use PostgreSQL or MySQL)
 *.sqlite3
@@ -50,4 +41,3 @@ node_modules/
 
 # media related files 
 backend/src/media/
-
