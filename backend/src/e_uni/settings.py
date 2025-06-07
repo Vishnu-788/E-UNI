@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["e-uni.onrender.com"]
 
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Application definition
