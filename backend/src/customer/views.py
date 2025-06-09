@@ -15,7 +15,7 @@ class CustomerProfileDetailUpdateView(generics.RetrieveUpdateAPIView):
     
 class CustomerProductBrowseListView(generics.ListAPIView):
     permission_classes=[permissions.AllowAny]
-    queryset = Product
+    queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
     def get_object(self):
@@ -24,7 +24,7 @@ class CustomerProductBrowseListView(generics.ListAPIView):
 
 class CustomerProductBrowseDetail(generics.RetrieveAPIView):
     permission_classes=[permissions.AllowAny]
-    queryset = Product
+    queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
     def get_object(self):
