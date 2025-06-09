@@ -7,6 +7,9 @@ env/
 venv/
 backend/env/
 
+# dot env
+backend/src/.env
+
 # SQLite DB (remove if you use PostgreSQL or MySQL)
 *.sqlite3
 db.sqlite3
