@@ -12,24 +12,20 @@ class CustomerProfileDetailUpdateView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         user = self.request.user
         return user.customer
-    
+
+# Permission class to allowany because i want non autheticated users to know atleast what kind of products are there
 class CustomerProductBrowseListView(generics.ListAPIView):
     permission_classes=[permissions.AllowAny]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-    def get_object(self):
-        user = self.request.user
-        return user.customer
 
-class CustomerProductBrowseDetail(generics.RetrieveAPIView):
+class CustomerProductBrowseDetailView(generics.RetrieveAPIView):
     permission_classes=[permissions.AllowAny]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-    def get_object(self):
-        user = self.request.user
-        return user.customer
+
 
 
     

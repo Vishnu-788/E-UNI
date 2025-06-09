@@ -14,6 +14,7 @@ class IsStaffEditorPermission(permissions.DjangoModelPermissions):
 
 
 class IsVerifiedShop(permissions.BasePermission):
+    message = "You must be a verified shop to perform this action."
     def has_permission(self, request, view):
         user = request.user
         return hasattr(user, 'shop') and user.shop.is_verified
