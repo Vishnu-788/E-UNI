@@ -4,49 +4,58 @@ An E-Commerce application backend built using Django stateless server and REST F
 
 ## ✨ Features
 
-- Shop & Customer registration
-- Product CRUD
-- Customer product view
-- Token-based authentication (JWT)
-- Isolated permissions for Shop & Customer users
+- Shop & Customer registration  
+- Product CRUD  
+- Customer product view  
+- Token-based authentication (JWT)  
+- Isolated permissions for Shop & Customer users  
 
 ## ⚙️ Installation
 
-1. Clone the repo and enter the project folder
-2. Create virtual environment
-3. Install dependencies
-4. Run migrations
-5. Start the server
+1. Clone the repo and enter the project folder  
+2. Create virtual environment  
+3. Install dependencies  
+4. Run migrations  
+5. Start the server  
 
 ## 📮 API Endpoints
 
-- Registration, Login, logout (Common endpoints for all users(Shop, Customers))
-  -> `POST /api/register/`
-  -> `POST /api/login/`
-  -> `POST /api/logout/`
+### Registration, Login, Logout  
+(Common endpoints for all users (Shop, Customers))
 
-- Shop based endpoints
-  -> `GET/PATCH   /api/shop/`                        --view or update shop details/profile
-  -> `GET         /api/shop/products/`               --view all products shop
-  -> `GET         /api/shop/products/<id>/detail/`   --view a single product
-  -> `POST        /api/shop/products/create/`        --create a product
-  -> `PATCH/PUT   /api/shop/products/<id>/update/`   --update product details
-  -> `DESTROY     /api/shop/products/<id>/delete/`   --delete a product
+- **POST** `/api/register/` — Register a new user  
+- **POST** `/api/login/` — Login an existing user  
+- **POST** `/api/logout/` — Logout the current user  
 
-  -> `GET         /api/orders/shop/`                 --View all orders related to that shop
-  -> `GET         /api/orders/shop/<int:pk>/detail/` --view a specific order
-  -> `PATCH       /api/orders/shop/<int:pk>/update/` --update an order
-  -> `DESTROY     /api/orders/shop/<int:pk>/delete/` --delete an order
+---
 
-- Customer based endpoints
-  -> `GET         /api/customer/`                    --view products from different shops
-  -> `GET/PATCH   /api/customer/<id>/`               --view a specific product
-  -> `GET/PATCH   /api/customer/profile/`             --view or update customer profile
+### Shop based endpoints
 
-  -> `GET         /api/orders/customer/`             --view all orders related to that customer
-  -> `POST        /api/orders/customer/create/`      --create a new order
-  -> `GET         /api/orders/customer/<id>/detail`  --view a specific order
+- **GET / PATCH** `/api/shop/` — View or update shop details/profile  
+- **GET** `/api/shop/products/` — View all products of the shop  
+- **GET** `/api/shop/products/<id>/detail/` — View a single product  
+- **POST** `/api/shop/products/create/` — Create a product  
+- **PATCH / PUT** `/api/shop/products/<id>/update/` — Update product details  
+- **DELETE** `/api/shop/products/<id>/delete/` — Delete a product  
 
+- **GET** `/api/orders/shop/` — View all orders related to that shop  
+- **GET** `/api/orders/shop/<int:pk>/detail/` — View a specific order  
+- **PATCH** `/api/orders/shop/<int:pk>/update/` — Update an order  
+- **DELETE** `/api/orders/shop/<int:pk>/delete/` — Delete an order  
+
+---
+
+### Customer based endpoints
+
+- **GET** `/api/customer/` — View products from different shops  
+- **GET / PATCH** `/api/customer/<id>/` — View or update a specific product  
+- **GET / PATCH** `/api/customer/profile/` — View or update customer profile  
+
+- **GET** `/api/orders/customer/` — View all orders related to that customer  
+- **POST** `/api/orders/customer/create/` — Create a new order  
+- **GET** `/api/orders/customer/<id>/detail` — View a specific order  
+
+  
 ## 🛠️ Built With
 
 - Python 
